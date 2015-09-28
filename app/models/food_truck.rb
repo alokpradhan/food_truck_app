@@ -6,7 +6,7 @@ class FoodTruck < ActiveRecord::Base
   has_many :locations, through: :operations
 
   def data(location)
-    valid_locations = []
+    food_trucks_result = []
 
     geoLocation = Geocoder.coordinates(location)
 
@@ -14,14 +14,11 @@ class FoodTruck < ActiveRecord::Base
     locations.each do |location|
       if geoLocation[0] - location.lat <= 0.01  # Latitude
         if geoLocation[1] - location.long <= 0.01  # Longitude
-          valid_locations.push(location)
+          food_trucks_result.push(location.food_trucks)
         end
       end
     end
-
-    result  = FoodTruck.where()
-
-    return self
+    food_trucks_result
   end
 
 end
