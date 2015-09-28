@@ -5,7 +5,7 @@ class FoodTruck < ActiveRecord::Base
   has_many :operations
   has_many :locations, through: :operations
 
-  def self.data(location = request.remote_ip)
+  def self.data(location)
     find = FoodTruck.new
     geoLocation = (location[0] != '[') ?
     Geocoder.coordinates(location) : JSON.parse(location)
