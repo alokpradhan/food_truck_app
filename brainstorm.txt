@@ -30,15 +30,15 @@ Food Truck Challenge: Create a service that tells the user what types of food tr
 DB:
 Food-truck
  - food truck name (applicant)
- - days hours
  - food items
  - facility type
 
 Operations Table (food-truck - location join)
  - food_truck_id
  - location_id
- - days
- - hours
+ - day
+ - hours start
+ - hours end
 
 Location Table
   - lat
