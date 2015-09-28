@@ -46,7 +46,6 @@ Location Table
   - address
   - location description
 
-
 5. Sprints
 1.
 A. Backend: Import data into db
