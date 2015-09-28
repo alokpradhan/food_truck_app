@@ -1,0 +1,34 @@
+Food Truck Challenge: Create a service that tells the user what types of food trucks might be found near a specific location on a map.
+
+1. Food truck data: https://data.sfgov.org/Economy-and-Community/Mobile-Food-Facility-Permit/rqzj-sfat?
+
+  - location (lat, long)
+  - food truck data
+
+2. Google maps to showcase location
+
+  - map lat long
+  - show data on map
+
+3. User flow
+
+  - Backend - preseed data in db (httparty)
+  - Front-end: Get location from user - convert to lat, long (Geocoder)
+  - Font-end: send location to backend (AJAX Post)
+  - Backend -
+        Geocode address
+        locate food trucks within radius
+        return result to front end
+  - Front-end: in success callback serve map with food truck data
+        - table that shows the data
+        - place pins on map
+
+4. Organization
+
+  - Single page app
+
+5. Sprints
+
+1.
+A. Backend: Import data into db
+B. Frontend: Architect app / layouts / routes
