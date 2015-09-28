@@ -7,7 +7,7 @@ var locatonMarker;
 var markers = [];
 window.initMap = function() {
   console.log("callback running")
-  var map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 37.773972, lng: -122.431297},
     zoom: 13
   });
@@ -42,7 +42,6 @@ var getFoodTrucks = function(location){
   var promise = Restangular.all('food_trucks').getList()
   }
 
-
   promise.then(function(response){
     console.log(response.length)
     for (var i = response.length - 1; i >= 0; i--) {
@@ -56,7 +55,8 @@ var getFoodTrucks = function(location){
         map: map,
         title: response[i][0].name
       });
-      debugger
+      console.log(marker)
+      // debugger
     };
   }, function(error){
     console.log(error)
