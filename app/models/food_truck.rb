@@ -14,8 +14,8 @@ class FoodTruck < ActiveRecord::Base
   end
 
   def nearbyLocations(geoLocation)
-    Location.where("(lat - #{geoLocation[0]}).abs <= ?", 0.005).
-              where("(long - #{geoLocation[1]}).abs <= ?", 0.005)
+    Location.where("(lat - #{geoLocation[0]}).abs <= ?", 0.002).
+              where("(long - #{geoLocation[1]}).abs <= ?", 0.002)
   end
 
   def trucksNearLocations(locations)
