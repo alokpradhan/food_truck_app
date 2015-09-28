@@ -25,7 +25,7 @@ class FoodTruck < ActiveRecord::Base
       food_trucks_result.push(truckLocation.food_trucks)
     end
 
-    if food_trucks_result.length < 26
+    if food_trucks_result.length < 26 && radius < 0.2
       trucksNearLocations(geoLocation, radius += 0.002, food_trucks_result)
     end
 
