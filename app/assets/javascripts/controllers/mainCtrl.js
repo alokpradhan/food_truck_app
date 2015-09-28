@@ -82,7 +82,6 @@ var getFoodTrucks = function(location){
   if (location){
   var promise = Restangular.all('food_trucks').getList(location)
   } else {
-  debugger
   var promise = Restangular.all('food_trucks').getList()
   }
 
