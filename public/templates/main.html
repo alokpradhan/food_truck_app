@@ -3,11 +3,23 @@
 <form class="form-inline">
   <div class="form-group">
     <label for="street-number">Street Number</label>
-    <input type="text" class="form-control" id="street-number" placeholder="123">
+    <input type="text" class="form-control" id="street-number" placeholder="123" ng-model="streetNumber">
   </div>
   <div class="form-group">
     <label for="street-name">Street Name</label>
-    <input type="email" class="form-control" id="street-name" placeholder="Fake St.">
+    <input type="text" class="form-control" id="street-name" placeholder="Fake St." ng-model="streetName">
   </div>
-  <button type="submit" class="btn btn-primary">Search for Food</button>
+  <button type="submit" class="btn btn-primary" ng-click="submitAddress()">Search by Address</button>
+  <hr>
+  <div class="form-group">
+    <label for="latitude">Latitude</label>
+    <input type="text" class="form-control" id="latitude" placeholder="123" ng-model="latitude">
+  </div>
+  <div class="form-group">
+    <label for="longitude">Longitude</label>
+    <input type="text" class="form-control" id="longitude" placeholder="Fake St." ng-model="longitude">
+  </div>
+  <button type="submit" class="btn btn-primary" ng-click="submitAddress()">Search by Location</button>
+
+  <br>
 </form>

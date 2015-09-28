@@ -9,6 +9,7 @@ var foodTrucks = angular.module("foodTrucks", ['ui.router', 'restangular'])
    $stateProvider
       .state('main', {
         url: "/main",
-        templateUrl: "templates/main.html"
+        templateUrl: "templates/main.html",
+        controller: 'mainCtrl'
       })
 })
