@@ -5,3 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+FoodTruck.destroy_all
+Location.destroy_all
+Operation.destroy_all
+
+TruckData.new

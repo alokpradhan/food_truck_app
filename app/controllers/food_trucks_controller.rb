@@ -1,12 +1,15 @@
 class FoodTrucksController < ApplicationController
 
-def index
+  def index
 
-end
+    @truckData = FoodTruck.all
 
-def show
+    if params[:address]
+      @truckData = FoodTruck.data(params[:address])
+    end
 
-end
+    render json: @truckData.to_json(includes: [:location, :operations]), status: 200
 
+  end
 
 end
