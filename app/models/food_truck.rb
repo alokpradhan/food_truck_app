@@ -9,21 +9,26 @@ class FoodTruck < ActiveRecord::Base
     find = FoodTruck.new
     geoLocation = (location[0] != '[') ?
     Geocoder.coordinates(location) : JSON.parse(location)
-    locate = find.nearbyLocations(geoLocation)
-    find.trucksNearLocations(locate)
+    find.trucksNearLocations(geoLocation)
   end
 
-  def nearbyLocations(geoLocation)
-    Location.where("(lat - #{geoLocation[0]}).abs <= ?", 0.005).
-              where("(long - #{geoLocation[1]}).abs <= ?", 0.005)
+  def nearbyLocations(geoLocation, radius)
+    Location.where("(lat - #{geoLocation[0]}).abs <= ?", radius).
+              where("(long - #{geoLocation[1]}).abs <= ?", radius)
   end
 
-  def trucksNearLocations(locations)
-    food_trucks_result = []
+  def trucksNearLocations(geoLocation, radius = 0.005, food_trucks_result = [])
+
+    locations = nearbyLocations(geoLocation, radius)
 
     locations.each do |truckLocation|
       food_trucks_result.push(truckLocation.food_trucks)
     end
+
+    if food_trucks_result.length < 26
+      trucksNearLocations(geoLocation, radius += 0.002, food_trucks_result)
+    end
+
     food_trucks_result[0..25]
   end
 
