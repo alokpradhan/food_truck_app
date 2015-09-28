@@ -9,13 +9,15 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+
+//= require angular
 //
 //= require jquery
 //= require jquery_ujs
-//= require angular
+//
 
-//= require angular-ui-router.min.js
-//= require underscore.min.js
-//= require restangular.min.js
+// = require ui-router.js
+// = require underscore.js
+// = require restangular.js
 
 //= require_tree .
