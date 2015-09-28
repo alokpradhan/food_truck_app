@@ -27,8 +27,29 @@ Food Truck Challenge: Create a service that tells the user what types of food tr
 
   - Single page app
 
-5. Sprints
+DB:
+Food-truck
+ - food truck name (applicant)
+ - days hours
+ - food items
+ - facility type
 
+Operations Table (food-truck - location join)
+ - food_truck_id
+ - location_id
+ - days
+ - hours
+
+Location Table
+  - lat
+  - long
+  - address
+  - location description
+
+
+5. Sprints
 1.
 A. Backend: Import data into db
 B. Frontend: Architect app / layouts / routes
+
+
