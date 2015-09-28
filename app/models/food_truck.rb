@@ -8,7 +8,8 @@ class FoodTruck < ActiveRecord::Base
   def self.data(location)
     food_trucks_result = []
 
-    geoLocation = Geocoder.coordinates(location)
+    geoLocation = Geocoder.coordinates(location) ||
+                  Geocoder.coordinates(request.remote_ip)
 
     locations = Location.all
     locations.each do |location|
