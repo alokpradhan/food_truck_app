@@ -5,15 +5,16 @@ class FoodTruck < ActiveRecord::Base
   has_many :operations
   has_many :locations, through: :operations
 
-  def data(location)
+  def self.data(location)
     food_trucks_result = []
 
     geoLocation = Geocoder.coordinates(location)
 
     locations = Location.all
     locations.each do |location|
-      if geoLocation[0] - location.lat <= 0.01  # Latitude
-        if geoLocation[1] - location.long <= 0.01  # Longitude
+
+      if location.lat && ((location.lat - geoLocation[0]).abs) <= 0.005  # Latitude
+        if location.long && ((location.long - geoLocation[1]).abs) <= 0.005  # Longitude
           food_trucks_result.push(location.food_trucks)
         end
       end
@@ -22,3 +23,5 @@ class FoodTruck < ActiveRecord::Base
   end
 
 end
+
+
