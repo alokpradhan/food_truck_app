@@ -6,23 +6,26 @@ class FoodTruck < ActiveRecord::Base
   has_many :locations, through: :operations
 
   def self.data(location = request.remote_ip)
+    find = FoodTruck.new
+    geoLocation = (location[0] != '[') ?
+    Geocoder.coordinates(location) : JSON.parse(location)
+    locate = find.nearbyLocations(geoLocation)
+    find.trucksNearLocations(locate)
+  end
+
+  def nearbyLocations(geoLocation)
+    Location.where("(lat - #{geoLocation[0]}).abs <= ?", 0.005).
+              where("(long - #{geoLocation[1]}).abs <= ?", 0.005)
+  end
+
+  def trucksNearLocations(locations)
     food_trucks_result = []
 
-    geoLocation = (location[0] != '[') ? Geocoder.coordinates(location) : JSON.parse(location)
-
-    locations = Location.all
-
-    locations.each do |locate|
-
-      if locate.lat && ((locate.lat - geoLocation[0]).abs) <= 0.005  # Latitude
-        if locate.long && ((locate.long - geoLocation[1]).abs) <= 0.005  # Longitude
-          food_trucks_result.push(locate.food_trucks)
-        end
-      end
+    locations.each do |truckLocation|
+      food_trucks_result.push(truckLocation.food_trucks)
     end
-    food_trucks_result
+    food_trucks_result[0..25]
   end
 
 end
-
 
