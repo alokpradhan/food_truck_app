@@ -14,7 +14,7 @@ window.initMap = function() {
   google.maps.event.addListener(map, 'click', function(event) {
     addMarker(event.latLng, map);
     locationMarker = [event.latLng.H, event.latLng.L]
-    console.log(locationMarker)
+    submitCoords(locationMarker);
   });
 }
 
@@ -30,6 +30,29 @@ function addMarker(location, map) {
 }
 
 //End Map Set up
+//
+var submitCoords = function(coords){
+  console.log("coords are", coords)
+  Restangular.all('food_trucks').getList({address: JSON.stringify(coords)})
+
+  .then(function(response){
+    console.log(response.length)
+    for (var i = response.length - 1; i >= 0; i--) {
+      console.log(response[i][0])
+
+      var locations = response[i][0].locations[0]
+      var latLong = {lat: parseFloat(locations.lat), lng: parseFloat(locations.long)}
+     var marker = new google.maps.Marker({
+        position: latLong,
+        map: map,
+        title: response[i][0].name
+      });
+    };
+  }, function(error){
+    console.log(error)
+  })
+
+}
 
 
 $scope.submitAddress = function(){
@@ -55,6 +78,8 @@ $scope.submitAddress = function(){
   })
 
 }
+
+
 
 
 $scope.locateMe = function(){

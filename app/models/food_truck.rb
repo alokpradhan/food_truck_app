@@ -5,8 +5,11 @@ class FoodTruck < ActiveRecord::Base
   has_many :operations
   has_many :locations, through: :operations
 
-  def self.data(location)
+  def self.data(location = request.remote_ip)
     food_trucks_result = []
+
+    p "*************"
+    p location
 
     geoLocation = Geocoder.coordinates(location)
 
