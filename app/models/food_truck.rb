@@ -8,14 +8,15 @@ class FoodTruck < ActiveRecord::Base
   def self.data(location = request.remote_ip)
     food_trucks_result = []
 
-    geoLocation = location[0] != '[' ? Geocoder.coordinates(location) : JSON.parse location
+    geoLocation = (location[0] != '[') ? Geocoder.coordinates(location) : JSON.parse(location)
 
     locations = Location.all
-    locations.each do |location|
 
-      if location.lat && ((location.lat - geoLocation[0]).abs) <= 0.005  # Latitude
-        if location.long && ((location.long - geoLocation[1]).abs) <= 0.005  # Longitude
-          food_trucks_result.push(location.food_trucks)
+    locations.each do |locate|
+
+      if locate.lat && ((locate.lat - geoLocation[0]).abs) <= 0.005  # Latitude
+        if locate.long && ((locate.long - geoLocation[1]).abs) <= 0.005  # Longitude
+          food_trucks_result.push(locate.food_trucks)
         end
       end
     end
