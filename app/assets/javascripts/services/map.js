@@ -1,36 +1,26 @@
-foodTrucks.service('map', ['backend', '$window',
-                  function(backend, $window){
+foodTrucks.service('map', ['backend', '$window', function(backend, $window) {
 
   var obj = {};
-  var markers = [];
-  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  var labelIndex = 0;
-  var userPosition = [];  // [lat, long]
+  var _markers = [];
+  var _labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  var _labelIndex = 0;
 
   $window.initMap = function() {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 37.773972, lng: -122.431297},
       zoom: 13
     });
-    addClickListener(map);
+    _addClickListener(map);
   };
 
-  var getLocation = (function(){
-    navigator.geolocation.getCurrentPosition(function(response){
-      userPosition[0] = response.coords.latitude;
-      userPosition[1] = response.coords.longitude;
-      console.log(userPosition);
-    });
-  })();
-
-  var addClickListener = function(map){
+  var _addClickListener = function(map){
     google.maps.event.addListener(map, 'click', function(event){
-      addMarker(event.latLng, map);
-      submitMarker([event.latLng.H, event.latLng.L]);
+      _addMarker(event.latLng, map);
+      _submitMarker([event.latLng.H, event.latLng.L]);
     });
   };
 
-  var addMarker = function(location, map) {
+  var _addMarker = function(location, map) {
     var marker = new google.maps.Marker(
       {
         position: location,
@@ -38,14 +28,14 @@ foodTrucks.service('map', ['backend', '$window',
         map: map,
         title: "Selected Location"
       });
-    markers.push([marker, undefined, "*"]);
+    _markers.push([marker, undefined, "*"]);
   };
 
-  var addTrucksToMap = function(trucks){
+  var _addTrucksToMap = function(trucks){
     for (var i = trucks.length - 1; i >= 0; i--) {
       var locations = trucks[i][0].locations[0];
       var latLong = {lat: parseFloat(locations.lat), lng: parseFloat(locations.long)};
-      var label = labels[labelIndex++ % labels.length];
+      var label = _labels[_labelIndex++ % _labels.length];
 
       var marker = new google.maps.Marker({
         position: latLong,
@@ -53,18 +43,18 @@ foodTrucks.service('map', ['backend', '$window',
         label: label,
         title: trucks[i][0].name
       });
-      markers.push([marker, trucks[i][0], label]);
+      _markers.push([marker, trucks[i][0], label]);
     }
   };
 
-  var clearMarkers = function(){
-    for (var i = markers.length - 1; i >= 0; i--) {
-      markers[i][0].setMap(null);
+  var _clearMarkers = function(){
+    for (var i = _markers.length - 1; i >= 0; i--) {
+      _markers[i][0].setMap(null);
     }
-    markers.splice(0, markers.length);
+    _markers.splice(0, _markers.length);
   };
 
-  var submitMarker = function(coords){
+  var _submitMarker = function(coords){
     var location = JSON.stringify(coords);
     backend.getFoodTrucks({address: location})
     .then(function(response){
@@ -73,13 +63,14 @@ foodTrucks.service('map', ['backend', '$window',
   };
 
   obj.getMarkers = function(){
-    return markers;
+    return _markers;
   };
 
   obj.updateMap = function(trucks){
-    clearMarkers();
-    addTrucksToMap(trucks);
+    _clearMarkers();
+    _addTrucksToMap(trucks);
   };
 
   return obj;
+
 }]);

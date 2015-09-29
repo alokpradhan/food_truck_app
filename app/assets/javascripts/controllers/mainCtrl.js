@@ -1,5 +1,5 @@
-foodTrucks.controller("mainCtrl", ['$scope', 'Restangular', 'map', 'backend',
-                      function($scope, Restangular, map, backend){
+foodTrucks.controller('mainCtrl', ['$scope', 'Restangular', 'map', 'backend', 'user',
+                      function($scope, Restangular, map, backend, user){
 
 $scope.markers = map.getMarkers();
 
@@ -13,9 +13,17 @@ $scope.submitAddress = function(){
 };
 
 $scope.locateMe = function(){
-  backend.getFoodTrucks().then(function(response){
+  var location = user.coordinates();
+
+  if(location){
+    backend.getFoodTrucks(location).then(function(response){
       map.updateMap(response);
-  });
+    });
+  } else {
+    backend.getFoodTrucks().then(function(response){
+      map.updateMap(response);
+    });
+  }
 };
 
 }]);
