@@ -1,4 +1,4 @@
-<h1>Angular APP</h1>
+<h1>SF Food Trucks</h1>
 
 <form class="form-inline">
   <div class="form-group">
@@ -13,7 +13,16 @@
   <button class="btn btn-primary" ng-click="locateMe()">Search Near Me</button>
   <hr>
 
+  <div id="map"></div>
 
-
-  <br>
+  <table class="table table-striped" id="food-table">
+  <tr id="header-row">
+    <th>Label</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Items</th>
+    <th>Address</th>
+    <th>Location</th>
+  </tr>
+</table>
 </form>
