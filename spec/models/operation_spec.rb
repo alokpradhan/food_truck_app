@@ -22,11 +22,11 @@ RSpec.describe Operation, type: :model do
     let(:operation3){build(:operation, {location: nil})}
 
     it 'requires a food truck' do
-      expect{operation2.save!}.to raise_error
+      expect{operation2.save!}.to raise_error Exception
     end
 
     it 'requires a location' do
-      expect{operation3.save!}.to raise_error
+      expect{operation3.save!}.to raise_error Exception
     end
 
   end
