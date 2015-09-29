@@ -5,8 +5,19 @@ class FoodTruck < ActiveRecord::Base
   has_many :locations, through: :operations
 
   def self.data(location)
+
     find = FoodTruck.new
-    geo_location = (location[0] != '[') ? Geocoder.coordinates(location) : JSON.parse(location)
+
+    if (location[0] == '[')
+      geo_location = JSON.parse(location)
+    elsif location[-1] =='A'
+      geo_location = Geocoder.coordinates(location)
+    else
+      # binding.pry
+      response = HTTParty.get('http://ip-api.com/json/'+location)
+      geo_location = [response['lat'], response['lon']]
+    end
+
     find.trucks_near_locations(geo_location)
   end
 

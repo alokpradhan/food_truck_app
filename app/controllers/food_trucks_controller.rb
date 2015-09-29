@@ -1,8 +1,6 @@
 class FoodTrucksController < ApplicationController
 
   def index
-    p "********************"
-    p request.remote_ip
     if params[:address]
       @truckData = FoodTruck.data(params[:address])
     else
