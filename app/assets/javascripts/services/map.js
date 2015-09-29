@@ -45,6 +45,7 @@ foodTrucks.service('map', ['backend', '$window', function(backend, $window) {
       });
       _markers.push([marker, trucks[i][0], label]);
     }
+    console.log(_markers[1]);
   };
 
   var _clearMarkers = function(){

@@ -15,8 +15,8 @@ $scope.submitAddress = function(){
 $scope.locateMe = function(){
   var location = user.coordinates();
 
-  if(location){
-    backend.getFoodTrucks(location).then(function(response){
+  if(location.length === 2){
+    backend.getFoodTrucks({address: JSON.stringify(location)}).then(function(response){
       map.updateMap(response);
     });
   } else {
