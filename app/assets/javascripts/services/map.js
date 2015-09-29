@@ -1,11 +1,11 @@
-foodTrucks.service("map", ['Restangular', function(Restangular){
+foodTrucks.service("map", ['Restangular', '$window', function(Restangular, $window){
 
   var obj = {};
   var markers = [];
   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   var labelIndex = 0;
 
-  window.initMap = function() {
+  $window.initMap = function() {
     console.log("callback running")
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 37.773972, lng: -122.431297},
