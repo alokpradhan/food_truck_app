@@ -4,7 +4,7 @@
 *  Run `rspec` to make sure everything is working
 *  Fire up your `rails server` and head to localhost:3000 to check it out!
 
-This is [Alok's](https://github.com/alokpradhan/food_truck_app) and [Joseph's](https://github.com/joseph-lozano/food_truck_app) try at [Uber Coding Challenge #4](https://github.com/uber/coding-challenge-tools/blob/master/coding_challenge.md#food-trucks).  This is a full stack application, making use of a Ruby on Rails API to serve data to an Angular front-end.
+This is [Alok's](https://github.com/alokpradhan/food_truck_app) and [Joseph's](https://github.com/joseph-lozano/food_truck_app) try at [Uber Coding Challenge #4](https://github.com/uber/coding-challenge-tools/blob/master/coding_challenge.md#food-trucks).  This is a full stack application, making use of a Ruby on Rails API to serve data to an Angular front-end. Check it out [HERE](http://stormy-wave-6805.herokuapp.com/)
 
 #### Walkthrough
 ##### Database
