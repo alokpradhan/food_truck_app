@@ -13,7 +13,6 @@ class FoodTruck < ActiveRecord::Base
     elsif location[-1] =='A'
       geo_location = Geocoder.coordinates(location)
     else
-      # binding.pry
       response = HTTParty.get('http://ip-api.com/json/'+location)
       geo_location = [response['lat'], response['lon']]
     end
