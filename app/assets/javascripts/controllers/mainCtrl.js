@@ -1,5 +1,5 @@
-foodTrucks.controller('mainCtrl', ['$scope', 'Restangular', 'map', 'backend', 'user',
-                      function($scope, Restangular, map, backend, user){
+foodTrucks.controller('mainCtrl', ['$scope', 'Restangular', 'map', 'data', 'user',
+                      function($scope, Restangular, map, data, user){
 
 $scope.markers = map.getMarkers();
 
@@ -7,8 +7,8 @@ $scope.submitAddress = function(){
   var address = $scope.streetNumber + " " +
                 $scope.streetName + ", San Franscisco, CA";
 
-  backend.getFoodTrucks({address: address}).then(function(response){
-      map.updateMap(response);
+  data.getFoodTrucks({address: address}).then(function(response){
+      map.update(response);
   });
 };
 
@@ -16,13 +16,12 @@ $scope.locateMe = function(){
   var location = user.coordinates();
 
   if(location.length === 2){
-    backend.getFoodTrucks({address: JSON.stringify(location)}).then(function(response){
-      console.log(response);
-      map.updateMap(response);
+    data.getFoodTrucks({address: JSON.stringify(location)}).then(function(response){
+      map.update(response);
     });
   } else {
-    backend.getFoodTrucks().then(function(response){
-      map.updateMap(response);
+    data.getFoodTrucks().then(function(response){
+      map.update(response);
     });
   }
 };

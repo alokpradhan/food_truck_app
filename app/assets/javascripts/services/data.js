@@ -1,4 +1,4 @@
-foodTrucks.service('backend', ['Restangular', function(Restangular){
+foodTrucks.service('data', ['Restangular', function(Restangular){
 
   obj = {};
 
