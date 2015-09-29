@@ -19,7 +19,6 @@ foodTrucks.service('map', ['data', '$window', function(data, $window) {
   var _addClickListener = function(map){
     google.maps.event.addListener(map, 'click', function(event){
       _setUserSearchMarker(event.latLng, map);
-      _addUserSearchMarker();
       _submitMarker([event.latLng.H, event.latLng.L]);
     });
   };
