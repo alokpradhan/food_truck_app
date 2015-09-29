@@ -54,17 +54,25 @@ B. Frontend: Architect app / layouts / routes
 2.
 
 A. Backend:
-a. Autolocation bug fix
-b. Controller tests
-c. Refactor
+a. Autolocation bug fix - D
+b. Controller tests - D
+c. Refactor - D
+d. Send times to front end
 
 B. Frontend:
-a. Refactor to modularize
+a. Refactor to modularize - D
 b. Overlap tag marker
    - one marker for multiple food trucks at same location
    - OR
    - spider
-c. Prettify
+c. Prettify - D
+
+3.
+
+a. Write a read me
+    - technical highlights
+    - Write a guided tour
+    - Write instructions on how to use app
 
 
 

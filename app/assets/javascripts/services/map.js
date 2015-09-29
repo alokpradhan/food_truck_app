@@ -10,6 +10,7 @@ foodTrucks.service('map', ['backend', '$window', function(backend, $window) {
       center: {lat: 37.773972, lng: -122.431297},
       zoom: 13
     });
+    console.log(map);
     _addClickListener(map);
   };
 
@@ -70,6 +71,8 @@ foodTrucks.service('map', ['backend', '$window', function(backend, $window) {
   obj.updateMap = function(trucks){
     _clearMarkers();
     _addTrucksToMap(trucks);
+    map.setCenter(_markers[0][0].position);
+    map.setZoom(15);
   };
 
   return obj;

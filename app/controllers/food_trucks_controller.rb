@@ -6,7 +6,7 @@ class FoodTrucksController < ApplicationController
     else
       @truckData = FoodTruck.data(request.remote_ip)
     end
-    render json: @truckData.to_json(include: :locations), status: 200
+    render json: @truckData.to_json(include: [:locations, :oprerations]), status: 200
 
   end
 

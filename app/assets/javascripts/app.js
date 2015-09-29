@@ -11,3 +11,5 @@ foodTrucks.config(function($stateProvider, $urlRouterProvider) {
         controller: 'mainCtrl'
       });
 });
+
+// $(document).ready(function(){$window.initMap();});
