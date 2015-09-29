@@ -5,9 +5,13 @@
 
   <form class="form-inline">
 
+    <div class='row text-center'>
+        <h4>Click anywhere on the map to search, enter an address, or click 'Search Near Me'.</h4>
+    </div>
+    <hr>
     <div class='row'>
 
-      <div class="form-group col-sm-4">
+      <div class="form-group col-sm-3">
 
         <div class='row'>
           <label for="street-number">Street Number</label>
@@ -21,12 +25,11 @@
 
       </div>
 
-      <div class="form-group col-sm-4">
+      <div class="form-group col-sm-3">
 
         <div class='row'>
           <label for="street-name">Street Name</label>
         </div>
-
         <div class='row'>
           <input type="text" class="form-control"
                 id="street-name" placeholder="Sutter St."
@@ -35,33 +38,25 @@
 
       </div>
 
-      <div class="form-group col-sm-4">
+      <div class="form-group col-sm-3">
 
         <br>
         <button type="submit"
-                class="btn btn-primary btn-block"
-                ng-click="submitAddress()"
-                id='submit-by-address-button'>
+                class="btn btn-primary btn-block submit-button"
+                ng-click="submitAddress()">
                 Search by Address
         </button>
-
       </div>
-
-    </div> <!-- end of row -->
-
-    <div class='row text-center'>
-      <h5>OR</h5>
-    </div>
-
-    <div class='row'>
-      <div class='col-sm-8 col-sm-offset-2'>
-        <button class="btn btn-primary btn-block"
+      <div class='col-sm-3'>
+      <br>
+        <button class="btn btn-primary btn-block submit-button"
                 ng-click="locateMe()">
                 Search Near Me
         </button>
       </div>
+      <div class="col-sm-4">
+      </div>
     </div>
-
     <hr>
 
   </form>
@@ -83,8 +78,8 @@
         <th>Name</th>
         <th>Address</th>
         <th>Location</th>
-        <th>Timing</th>
-        <th>Items</th>
+        <th>Times</th>
+        <th>Menu Details</th>
         <th>Type</th>
       </tr>
       </thead>

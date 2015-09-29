@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-#submit-by-address-button{
+.submit-button{
   margin-top:5px;
 }
 
@@ -11,9 +11,9 @@
 }
 
 #street-number {
-  width: 250px;
+  width: 90%;
 }
 
 #street-name {
-  width: 250px;
+  width: 90%;
 }
