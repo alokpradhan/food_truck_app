@@ -14,16 +14,16 @@ Because food_trucks and locations have a many-to-many relationship, they are joi
 
 ##### Testing
 ###### Controller Testing
-Because our app is primarily an api to serve the front end, looking at the controller tests gives a great oppurtunity took look at the capabilities of the app.  Our API can receive location data in three formats, a string, such as `123 Fake Street, San Francisco, CA`, an JSON array or latitude and longitude coordinates, or as an IP address. In each of these cases, the controller successfully returns a JSON response object to the front-end, and limits the responses to 26.
+Because our app is primarily an api to serve the front end, looking at the controller tests gives a great opportunity took look at the capabilities of the app.  Our API can receive location data in three formats, a string, such as `123 Fake Street, San Francisco, CA`, an JSON array or latitude and longitude coordinates, or as an IP address. In each of these cases, the controller successfully returns a JSON response object to the front-end, and limits the responses to 26.
 
 Otherwise, if the location given is outside of San Francisco, the returned JSON object has a length of zero. That is, there are no nearby food trucks.
 ###### Model Testing
-Our FoodTruck model is contains the search methods, called `FoodTruck.data()`, and so our model tests for data check that this method works properly. In addition, it also checks that FoodTruck has both the Location, and Operation assocications.
+Our FoodTruck model is contains the search methods, called `FoodTruck.data()`, and so our model tests for data check that this method works properly. In addition, it also checks that FoodTruck has both the Location, and Operation associations.
 
 ##### Back-end
-Our `FoodTruck.data()` method takes one argument, that argument can be either an address string, a stringified array, or a stringified IP adddress. Our if/else block parse through each possibilitly, and converts the address into an Array, and passes it onto the next method. `trucks_near_location()` Takes the array from the previous method, and a fixed radius, and returns an array of all trucks within that radius. If there are less than 26 trucks found, it will expand the radius, and search again until exactly 26 are found; `nearby_locations` is a helper function.
+Our `FoodTruck.data()` method takes one argument, that argument can be either an address string, a stringified array, or a stringified IP address. Our if/else block parse through each possibility, and converts the address into an Array, and passes it onto the next method. `trucks_near_location()` Takes the array from the previous method, and a fixed radius, and returns an array of all trucks within that radius. If there are less than 26 trucks found, it will expand the radius, and search again until exactly 26 are found; `nearby_locations` is a helper function.
 
 ##### Front-end
 Our Front-end is built on Angular. We used Angular to take use of services, small modules of code. We have 3 services. A userPosition service, which grabs location data from the browswer, a map service, which renders the map, and contains the functions for add markers to the map., and a data service, which talks to the Rails API.
 
-All of thse serve a slim controller which simply handles ng-model objects and functions from the html page.
+All of these serve a slim angular controller which simply handles ng-model objects and functions from the html page.
