@@ -22,11 +22,6 @@ class FoodTruck < ActiveRecord::Base
     find.trucks_near_locations(geo_location)
   end
 
-  def nearby_locations(geo_location, radius)
-    Location.where("(lat - #{geo_location[0]}).abs <= ?", radius)
-      .where("(long - #{geo_location[1]}).abs <= ?", radius)
-  end
-
   def trucks_near_locations(geo_location, radius = 0.005, food_trucks_result = [])
     locations = nearby_locations(geo_location, radius)
 
@@ -39,5 +34,10 @@ class FoodTruck < ActiveRecord::Base
     end
 
     food_trucks_result[0..25]
+  end
+
+  def nearby_locations(geo_location, radius)
+    Location.where("(lat - #{geo_location[0]}).abs <= ?", radius)
+      .where("(long - #{geo_location[1]}).abs <= ?", radius)
   end
 end
