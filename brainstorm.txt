@@ -51,4 +51,32 @@ Location Table
 A. Backend: Import data into db
 B. Frontend: Architect app / layouts / routes
 
+2.
+
+A. Backend:
+a. Autolocation bug fix
+b. Controller tests
+c. Refactor
+
+B. Frontend:
+a. Refactor to modularize
+b. Overlap tag marker
+   - one marker for multiple food trucks at same location
+   - OR
+   - spider
+c. Prettify
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
