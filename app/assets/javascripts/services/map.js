@@ -101,7 +101,7 @@ foodTrucks.service('map', ['data', '$window', function(data, $window) {
 
   obj.update = function(trucks){
     _clearMarkers();
-    _addUserSearchMarker();
+    // _addUserSearchMarker();
     _addTrucksToMap(trucks);
     map.setCenter(_markers[0][0].position);
     map.setZoom(14);
