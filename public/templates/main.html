@@ -1,28 +1,96 @@
-<h1>SF Food Trucks</h1>
+<div class='spacer'></div>
 
-<form class="form-inline">
-  <div class="form-group">
-    <label for="street-number">Street Number</label>
-    <input type="text" class="form-control" id="street-number" placeholder="123" ng-model="streetNumber">
+<div class='row'>
+  <div class='col-sm-10 col-sm-offset-1'>
+
+  <form class="form-inline">
+
+    <div class='row'>
+
+      <div class="form-group col-sm-4">
+
+        <div class='row'>
+          <label for="street-number">Street Number</label>
+        </div>
+
+        <div class='row'>
+          <input type="text" class="form-control"
+                id="street-number" placeholder="123"
+                ng-model="streetNumber">
+        </div>
+
+      </div>
+
+      <div class="form-group col-sm-4">
+
+        <div class='row'>
+          <label for="street-name">Street Name</label>
+        </div>
+
+        <div class='row'>
+          <input type="text" class="form-control"
+                id="street-name" placeholder="Sutter St."
+                ng-model="streetName">
+        </div>
+
+      </div>
+
+      <div class="form-group col-sm-4">
+
+        <br>
+        <button type="submit"
+                class="btn btn-primary btn-block"
+                ng-click="submitAddress()"
+                id='submit-by-address-button'>
+                Search by Address
+        </button>
+
+      </div>
+
+    </div> <!-- end of row -->
+
+    <div class='row text-center'>
+      <h5>OR</h5>
+    </div>
+
+    <div class='row'>
+      <div class='col-sm-8 col-sm-offset-2'>
+        <button class="btn btn-primary btn-block"
+                ng-click="locateMe()">
+                Search Near Me
+        </button>
+      </div>
+    </div>
+
+    <hr>
+
+  </form>
   </div>
-  <div class="form-group">
-    <label for="street-name">Street Name</label>
-    <input type="text" class="form-control" id="street-name" placeholder="Fake St." ng-model="streetName">
+</div>
+
+<div class='row'>
+  <div class='col-sm-10 col-sm-offset-1'>
+    <div id="map"></div>
   </div>
-  <button type="submit" class="btn btn-primary" ng-click="submitAddress()">Search by Address</button> OR
-  <button class="btn btn-primary" ng-click="locateMe()">Search Near Me</button>
-  <hr>
+</div>
 
-  <div id="map"></div>
-
-  <table class="table table-striped" id="food-table">
-  <tr id="header-row">
-    <th>Label</th>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Items</th>
-    <th>Address</th>
-    <th>Location</th>
-  </tr>
-</table>
-</form>
+<div class='row'>
+  <div class='col-sm-10 col-sm-offset-1'>
+    <table class="table table-striped" id="food-table">
+      <thead>
+      <tr id="header-row">
+        <th>Label</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Items</th>
+        <th>Address</th>
+        <th>Location</th>
+      </tr>
+      </thead>
+      <tbody>
+        <tr results-table ng-repeat='marker in markers' marker='marker'>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
