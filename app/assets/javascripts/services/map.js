@@ -5,6 +5,7 @@ foodTrucks.service('map', ['backend', '$window',
   var markers = [];
   var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   var labelIndex = 0;
+  var userPosition = [];  // [lat, long]
 
   $window.initMap = function() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -13,6 +14,14 @@ foodTrucks.service('map', ['backend', '$window',
     });
     addClickListener(map);
   };
+
+  var getLocation = (function(){
+    navigator.geolocation.getCurrentPosition(function(response){
+      userPosition[0] = response.coords.latitude;
+      userPosition[1] = response.coords.longitude;
+      console.log(userPosition);
+    });
+  })();
 
   var addClickListener = function(map){
     google.maps.event.addListener(map, 'click', function(event){
