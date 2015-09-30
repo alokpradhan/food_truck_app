@@ -12,7 +12,6 @@ foodTrucks.service('map', ['data', '$window', function(data, $window) {
       center: {lat: 37.773972, lng: -122.431297},
       zoom: 13
     });
-    console.log(map);
     _addClickListener(map);
   };
 
@@ -51,6 +50,7 @@ foodTrucks.service('map', ['data', '$window', function(data, $window) {
       _createTruckMarker(latLong, label, trucks[i][0].name, trucks[i][0]);
 
     }
+    _labelIndex = 0;
   };
 
   var _createTruckMarker = function(latLong, label, title, truck){

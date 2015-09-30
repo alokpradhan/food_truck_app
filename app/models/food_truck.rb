@@ -22,15 +22,16 @@ class FoodTruck < ActiveRecord::Base
     find.trucks_near_locations(geo_location)
   end
 
-  def trucks_near_locations(geo_location, radius = 0.005, food_trucks_result = [])
+  def trucks_near_locations(geo_location, radius = 0.005)
+    food_trucks_result = []
     locations = nearby_locations(geo_location, radius)
 
     locations.each do |truckLocation|
       food_trucks_result.push(truckLocation.food_trucks)
     end
     # recursive function call to increase search radius until 26 trucks are found
-    if food_trucks_result.length < 26 && radius < 0.2
-      trucks_near_locations(geo_location, radius + 0.002, food_trucks_result)
+    if food_trucks_result.length < 26 && radius < 0.4
+      trucks_near_locations(geo_location, radius + 0.002)
     end
 
     food_trucks_result[0..25]
