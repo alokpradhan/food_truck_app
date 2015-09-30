@@ -2,6 +2,7 @@ foodTrucks.service('map', ['data', '$window', function(data, $window) {
 
   var obj = {};
   var _markers = [];
+  var _searchMarkerDetails;
   var _labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   var _labelIndex = 0;
   var _matchedCount = 1;
@@ -25,15 +26,15 @@ foodTrucks.service('map', ['data', '$window', function(data, $window) {
   var _setUserSearchMarker = function(location, map) {
     _searchMarker = {
       position: location,
-      label: "*",
+      label: "",
       map: map,
       title: "Selected Location"
     };
   };
 
   var _addUserSearchMarker = function() {
-    var marker = new google.maps.Marker( _searchMarker );
-    _markers.push([ marker, undefined, "*"]);
+    _searchMarkerDetails = new google.maps.Marker( _searchMarker );
+    // _markers.push([ marker, undefined, ""]);
   };
 
   var _addTrucksToMap = function(trucks){
@@ -95,13 +96,18 @@ foodTrucks.service('map', ['data', '$window', function(data, $window) {
     });
   };
 
+  var _updateUserSearchMarker = function(){
+    if(!!_searchMarkerDetails){_searchMarkerDetails.setMap(null);}
+    _addUserSearchMarker();
+  };
+
   obj.getMarkers = function(){
     return _markers;
   };
 
   obj.update = function(trucks){
     _clearMarkers();
-    // _addUserSearchMarker();
+    _updateUserSearchMarker();
     _addTrucksToMap(trucks);
     map.setCenter(_markers[0][0].position);
     map.setZoom(14);

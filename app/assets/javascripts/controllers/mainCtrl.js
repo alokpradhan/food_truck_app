@@ -8,8 +8,7 @@ $scope.submitAddress = function(){
                 $scope.streetName + ", San Franscisco, CA";
 
   data.getFoodTrucks({address: address}).then(function(response){
-      console.log(response);
-      if(response[0] !== undefined) {map.update(response);}
+    checkResponseAndUpdateMap(response);
   });
 };
 
@@ -18,15 +17,17 @@ $scope.locateMe = function(){
 
   if(location.length === 2){
     data.getFoodTrucks({address: JSON.stringify(location)}).then(function(response){
-      console.log(response);
-      if(response[0] !== undefined) {map.update(response);}
+      checkResponseAndUpdateMap(response);
     });
   } else {
     data.getFoodTrucks().then(function(response){
-      console.log(response);
-      if(response[0] !== undefined) {map.update(response);}
+      checkResponseAndUpdateMap(response);
     });
   }
+};
+
+var checkResponseAndUpdateMap = function(response){
+  if(response[0][0] !== undefined) {map.update(response);}
 };
 
 }]);
